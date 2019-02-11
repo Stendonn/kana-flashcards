@@ -7,7 +7,7 @@ public class KanaFlashcards {
 		
 		Flashcards frame = new Flashcards();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.resize(640,480);
+		frame.setSize(640,480);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		
