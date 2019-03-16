@@ -9,7 +9,7 @@ public class KanaFlashcards {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(640,480);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		
 
 	}
