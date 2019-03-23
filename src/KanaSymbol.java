@@ -8,7 +8,6 @@ public class KanaSymbol extends JLabel{
 	
 	public KanaSymbol() {
 		symbolList = new KanaHashTable();
-		setRandomSymbol();
 	}
 	public String getSymbol() {
 		return symbol;
@@ -17,22 +16,7 @@ public class KanaSymbol extends JLabel{
 		Random rand = new Random();
 		int symbolDigit = Math.abs(rand.nextInt() % 48);
 		int temp;
-//		while(symbolList.size() != 0 && symbolList.check(symbolDigit) == 0) {
-//			if(symbolDigit == 48) {
-//				symbolDigit = 0;
-//			}
-//			else {
-//				symbolDigit++;
-//			}
-//		}
-//		while(symbolList.size() != 0) {
-//			if(symbolList.check(symbolDigit) == 0) {
-//				symbolDigit++;
-//				if(symbolDigit == 48) {
-//					symbolDigit = 0;
-//				}
-//			}
-//		}
+
 		if(symbolList.size() != 0) {
 			while(symbolList.check(symbolDigit) == 0) {
 				symbolDigit++;
@@ -44,15 +28,12 @@ public class KanaSymbol extends JLabel{
 			throw new RuntimeException("done");
 		}
 		
-		System.out.println(symbolDigit);
+		//System.out.println(symbolDigit);
 		symbol = digitToKana(symbolDigit);
 		setText(symbol);
 		
 		symbolList.uncheck(symbolDigit);
-		//System.out.println(symbolDigit);
-		
-		
-		//setText("");
+
 	}
 	public boolean isEmpty() {
 		if(symbolList.size() == 0) {
@@ -80,6 +61,7 @@ public class KanaSymbol extends JLabel{
 		case 4:
 			kana += "‚¨";
 			break;
+		//k
 		case 5:
 			kana += "‚©";
 			break;
@@ -95,6 +77,7 @@ public class KanaSymbol extends JLabel{
 		case 9:
 			kana += "‚±";
 			break;
+		//s
 		case 10:
 			kana += "‚³";
 			break;
@@ -110,6 +93,7 @@ public class KanaSymbol extends JLabel{
 		case 14:
 			kana += "‚»";
 			break;
+		//t
 		case 15:
 			kana += "‚½";
 			break;
@@ -125,6 +109,7 @@ public class KanaSymbol extends JLabel{
 		case 19:
 			kana += "‚Æ";
 			break;
+		//n
 		case 20:
 			kana += "‚È";
 			break;
@@ -137,13 +122,10 @@ public class KanaSymbol extends JLabel{
 		case 23:
 			kana += "‚Ë";
 			break;
-			
-			
-			
-
 		case 24:
 			kana += "‚Ì";
 			break;
+		//h
 		case 25:
 			kana += "‚Í";
 			break;
@@ -228,11 +210,11 @@ public class KanaSymbol extends JLabel{
 		
 		return kana;
 	}
-	
+
 	public static void main(String[] args) {
 		
-		KanaSymbol lol = new KanaSymbol();
-		System.out.println(lol.digitToKana(5));
+		KanaSymbol test = new KanaSymbol();
+		System.out.println(test.digitToKana(5));
 		
 	}
 	

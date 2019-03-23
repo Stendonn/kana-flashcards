@@ -31,8 +31,9 @@ public class FlashcardScreen extends JFrame{
 	private JLabel kana;
 	private JTextField answer;
 	private KanaSymbol symbol;
-	private JTextField testbutton;
 	private GridBagConstraints c;
+	private JLabel correctDisplay; 
+	private int i = 0;
 	
 	public FlashcardScreen() {
 		super("Kana Flashcards");
@@ -48,70 +49,48 @@ public class FlashcardScreen extends JFrame{
 		kana = new JLabel("Hiragana");
 		answer = new JTextField();
 		symbol = new KanaSymbol();
-		symbol.setText("whoa");
+		symbol.setText("Press Enter to Begin!");
 		//testbutton = new JButton("lol");
 		//change the font
 		kana.setFont(new Font("Hiragana", Font.PLAIN, 28));
 		symbol.setFont(new Font("blank", Font.BOLD, 40));
 		
 		//title
-		//c.fill = GridBagConstraints.HORIZONTAL;
-		//c.weightx = 0.5;
-		//c.weighty = 0.5;
-		//c.fill = GridBagConstraints.BOTH;
+
 		c.gridx = 0;
 		c.gridy = 0;
 		c.insets = new Insets(0, 0, 50 ,0);
 		
 		add(kana,c);
-//		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.BOTH;
-//		c.weighty = 0.05;
-//		c.weightx = 0;
-//	    c.gridx = 0;
-//		c.gridy = 0;
-//		add(kana,c);
-		//c.fill = GridBagConstraints.NONE;
-		//question
-		//c.fill = GridBagConstraints.NONE;
-//		c.insets = new Insets(15, 200, 50, 200);
-//		c.weightx = 1;
-//		c.weighty = 0.1;
-//		c.gridx = 0;
-//		c.gridy = 2;
-//		add(test, c);
+		//displaying symbol
 		c.insets = new Insets(0, 0, 100, 0);
 		c.gridx = 0;
 		c.gridy = 1;
-		//c.anchor = GridBagConstraints.CENTER;
-		//c.ipadx = 100;
+
 		c.anchor = GridBagConstraints.CENTER;
 		add(symbol,c);
-		//JTextfield
 		
-		//c.fill = GridBagConstraints.HORIZONTAL;
-		//answer = new JTextField(5);
-//		answer.setFont(new Font("Hiragana", Font.PLAIN, 16));
-//		answer.setHorizontalAlignment(10);
-//		c.insets = new Insets(15, 230, 80, 230);
-//		c.fill = GridBagConstraints.BOTH;
-		//c.ipadx = 0;
-		c.fill = GridBagConstraints.HORIZONTAL;
+
+		// correctDisplay
+		
+		correctDisplay = new JLabel("Good luck!");
+		
+		//c.anchor = GridBagConstraints.LINE_END;
+		//c.fill = GridBagConstraints.VERTICAL;
+		//c.ipadx = 40;
+		c.insets = new Insets(0, 0, 50, 0);
 		c.gridx = 0;
 		c.gridy = 2;
-//		c.anchor = GridBagConstraints.CENTER;
+		add(correctDisplay, c);
+		
+		//JTextfield
+		
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 3;
 		answer.addActionListener(new TextboxListener());
 		add(answer,c);
-		
-		//testbutton
-//		c.anchor = GridBagConstraints.CENTER;
-//		c.fill = GridBagConstraints.HORIZONTAL;
-//		c.gridx = 0;
-//		c.gridy = 3;
-//		add(testbutton, c);
-		
-		//actionlistener
-		
 
 		
 		
@@ -120,22 +99,29 @@ public class FlashcardScreen extends JFrame{
 	private class TextboxListener implements ActionListener, KeyListener{
 		public void actionPerformed(ActionEvent ev) {
 
+
 			String input = answer.getText();
-			System.out.println(input);
-			symbol.setRandomSymbol();
-			if(symbol.isEmpty()) {
-				throw new RuntimeException("end");
+
+			KanaMap map = new KanaMap();
+
+			if(map.isTruePair(input, symbol.getSymbol()) == true) {
+				correctDisplay.setText("Correct!");
 			}
-			System.out.println(symbol.getSymbol());
+			else {
+				correctDisplay.setText("Incorrect!");
+			}
+
+			symbol.setRandomSymbol();
+
+			
 			symbol.setText(symbol.getSymbol());
+			//i++;
+			//System.out.println(i);
 			answer.setText("");
+
 		}
 		public void keyPressed(KeyEvent e) {
-//			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-//				//System.out.println("lol");
-//				//test.setText("loll");
-//				//add(test,c);
-//			}
+
 		}
 		@Override
 		public void keyReleased(KeyEvent e) {
