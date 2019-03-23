@@ -1,3 +1,4 @@
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.util.Random;
 
@@ -24,8 +25,11 @@ public class KanaSymbol extends JLabel{
 					symbolDigit = 0;
 				}
 			}
-		}else {
-			throw new RuntimeException("done");
+		}
+		//1 use of each symbol
+		else {
+
+			//throw new RuntimeException("done");
 		}
 		
 		//System.out.println(symbolDigit);

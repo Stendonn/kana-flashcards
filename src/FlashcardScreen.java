@@ -33,7 +33,7 @@ public class FlashcardScreen extends JFrame{
 	private KanaSymbol symbol;
 	private GridBagConstraints c;
 	private JLabel correctDisplay; 
-	private int i = 0;
+	private int i;
 	
 	public FlashcardScreen() {
 		super("Kana Flashcards");
@@ -95,6 +95,14 @@ public class FlashcardScreen extends JFrame{
 		
 		
 	}
+	public boolean done() {
+		if (i == 48) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	//Listeners
 	private class TextboxListener implements ActionListener, KeyListener{
 		public void actionPerformed(ActionEvent ev) {
@@ -108,16 +116,22 @@ public class FlashcardScreen extends JFrame{
 				correctDisplay.setText("Correct!");
 			}
 			else {
-				correctDisplay.setText("Incorrect!");
+				if(i == 0) {
+					correctDisplay.setText("Good Luck!");
+				}
+				else {	
+					correctDisplay.setText("Incorrect!");
+				}
 			}
 
 			symbol.setRandomSymbol();
 
 			
 			symbol.setText(symbol.getSymbol());
-			//i++;
+			
 			//System.out.println(i);
 			answer.setText("");
+			i++;
 
 		}
 		public void keyPressed(KeyEvent e) {
